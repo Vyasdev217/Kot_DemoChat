@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+    <head>
+        <title>Chat | Kotneko's timepass project</title>
+        <style>
+            body{
+                background-color: #48cd88;
+            }
+                #header{
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 50px;
+                    width: 100%;
+                    text-align: center;
+                    background-color: #48cd88;
+                    color: #000000;
+                    font-size: 30px;
+                    font-weight: bold;
+                }
+                
+                #body{
+                    position: fixed;
+                    max-width: 100%;
+                    top:50px;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin-top: 0;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    margin-bottom: 50px;
+                }
+                    #chat_panel{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                        background-color: #9a65cc;
+                    }
+
+                        #chat_header{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            height: 50px;
+                            background-color: #7c19da;
+                            color: #ffffff;
+                        }
+                        
+                            #chat_roomInfo{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                width: 80%;
+                                height: 100%;
+                                box-sizing: border-box;
+                                padding: 10px;
+                                padding-inline-start: 20px;
+                                padding-inline-end: 20px;
+                            }
+
+                                #chat_roomName{
+                                    position: inherit;
+                                    top: 0;
+                                    width: 100%;
+                                    font-size: 20px;
+                                    font-weight: bold;
+                                }
+
+                                #chat_onlineCount{
+                                    position: inherit;
+                                    bottom: 0;
+                                    font-size: 15px;
+                                    font-weight: bold;
+                                }
+                            
+                            #show_side_panel_btn{
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            width: 50px;
+                            background-color: #b95cd3;
+                            border: none;
+                            cursor: pointer;
+                            }
+
+                            #leave_room_btn{
+                                position: absolute;
+                                top: 0;
+                                right: 50px;
+                                bottom: 0;
+                                width: 50px;
+                                background-color: #d35c5c;
+                                border: none;
+                                cursor: pointer;
+                            }
+
+                        #chat_log{
+                            position:absolute;
+                            top:50px;
+                            left: 0;
+                            right: 0;
+                            bottom: 50px;
+                            width: 100%;
+                            overflow-x: hidden;
+                            overflow-y: auto;
+                        }
+                            .chat_message{
+                                position: relative;
+                                max-width: 80%;
+                                width:fit-content;
+                                margin: 10px;
+                                padding: 10px;
+                                border-radius: 5px;
+                                background-color: #4ab95d;
+                                word-wrap: break-word;
+                            }
+
+                                .chat_message:hover{
+                                    position: relative;
+                                    max-width: 80%;
+                                    width:fit-content;
+                                    margin: 10px;
+                                    padding: 10px;
+                                    border-radius: 5px;
+                                    background-color: #2d7f3b;
+                                    word-wrap: break-word;
+                                }
+
+                                .chat_message_sender{
+                                    margin: 2px;
+                                    font-weight: bold;
+                                }
+
+                                .chat_message_message{
+                                    margin: 2px;
+                                }
+                            
+                        #chat_form{
+                            position: absolute;
+                            bottom: 10px;
+                            margin: 2px;
+                            width: 100%;
+                            align-content: center;
+                        }
+                    
+                            #recipients_input{
+                                display: none;
+                            }
+
+                            #message_input{
+                                width: 84%;
+                                height: 100%;
+                                box-sizing: border-box ;
+                                margin: 0;
+                                padding: 12px;
+                                padding-inline-start: 20px;
+                                padding-inline-end: 20px;
+                                background-color: #b697d4;
+                                border-color: #3e0178;
+                                border-radius: 20px;
+                                word-wrap: normal;
+                            }
+
+                            #send_btn{
+                                width: 14%;
+                                height: 100%;
+                                box-sizing: border-box;
+                                margin: 0;
+                                padding: 12px;    
+                                background-color: #4CAF50;
+                                border-color: #277c2a;
+                                border-radius: 20px;
+                                cursor: pointer;
+                            }
+                    
+                    #side_panel{
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 0;
+                        background-color: #a460c7;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+                    }
+                        #side_panel_menu{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            height: 50px;
+                            width: 300px;
+                            background-color: #a460c7;
+                        }
+                        
+                            #hide_side_panel_btn{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                                width: 60px;
+                                background-color: #b95cd3;
+                                border: none;
+                                cursor: pointer;
+                            }
+
+                        #members_panel{
+                            position: absolute;
+                            top: 50px;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background-color: #b05cd3;
+                        }
+                            .member{
+                                position: relative;
+                                width: 80%;
+                                margin: 10px;
+                                padding: 10px;
+                                background-color: #4ab95d;
+                                border-radius: 5px;
+                                word-wrap: break-word;
+                            }
+
+                                .member:hover{
+                                    position: relative;
+                                    width: 80%;
+                                    padding: 10px;
+                                    margin: 10px;
+                                    background-color: #2d7f3b;
+                                    border-radius: 5px;
+                                    word-wrap: break-word;
+                                }
+
+                                .member_name{
+                                    margin: 2px;
+                                    font-size: large;
+                                }
+
+                                .member_id{
+                                    margin: 2px;
+                                    color:gray;
+                                }
+        </style>
+    </head>
+    <body>
+        <div id="header">Kot chat</div>
+        <div id="body">
+            <div id="chat_panel">
+                <div id="chat_header">
+                    <div id="chat_roomInfo">
+                        <span id="chat_roomName">Common chat room</span>
+                        <br>
+                        <span id="chat_onlineCount">0 online</span>
+                    </div>
+                    <button id="leave_room_btn" onclick="leaveRoom()">Leave room</button>
+                    <button id="show_side_panel_btn" onclick="showSidePanel()"><<</button>
+                </div>
+                <div id='chat_log' class="chat_log"></div>
+                <div id="chat_form">
+                    <input id="recipients_input" type="text" name="recipients" placeholder="Recipient (Keep blank for broadcast)" hidden="true">
+                    <input id="message_input" type="text" name="message" placeholder="Message"/>
+                    <button id="send_btn" type="button" onclick="send()">Send</button>
+                </div>
+            </div>
+            
+            <div id="side_panel">
+                <div id="side_panel_menu">
+                    <button id="hide_side_panel_btn" onclick="hideSidePanel()">>></button>
+                </div>
+
+                <div id="members_panel">
+                    <span style="position:absolute;text-align:center;font-weight:bold;font-size:17px;width:100%">Active users</span>
+                    <br>
+                    <div id="members_list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        function mobOrPC() {
+            if (navigator.userAgent.match(/Android/i) 
+                || navigator.userAgent.match(/webOS/i) 
+                || navigator.userAgent.match(/iPhone/i) 
+                || navigator.userAgent.match(/iPad/i) 
+                || navigator.userAgent.match(/iPod/i) 
+                || navigator.userAgent.match(/BlackBerry/i) 
+                || navigator.userAgent.match(/Windows Phone/i)) { 
+                document.getElementById("body").style.marginTop="0";
+                document.getElementById("body").style.marginLeft="0";
+                document.getElementById("body").style.marginRight="0"; 
+                document.getElementById("body").style.marginBottom="0"; 
+
+            }
+            else { 
+                document.getElementById("body").style.marginTop="0";
+                document.getElementById("body").style.marginLeft="10%";
+                document.getElementById("body").style.marginRight="10%"; 
+                document.getElementById("body").style.marginBottom="50px"; 
+            }
+        } 
+
+        mobOrPC();
+        
+        var testing = {
+            port: ":8080"
+        };
+        const DOMAIN=window.location.hostname+testing.port;
+        var autoScroll = true;
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for(let i = 0; i <ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+            return "";
+        }
+        
+        // websocket to communicate with server
+        const socketProtocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:')
+        const socketURL = socketProtocol + '//' + DOMAIN+'/service/chat'
+        var chat = new WebSocket(socketURL);
+        chat.onopen = function() {
+            var auth_request={
+                "id":"id",
+                "timestamp":new Date(),
+                "type":"auth_request",
+                "data":
+                {
+                    "recipients":null,
+                    "message":getCookie("sessionKey")
+                }
+            };
+            chat.send(JSON.stringify(auth_request));
+        };
+        chat.onmessage = function(e) {
+            var e = JSON.parse(e.data);
+            var data=e.data;
+            if(e.type=="auth_response"){
+                if(e.data.success){
+                    var my_id = data.user_id;
+                }
+                else{
+                    // redirect to login page
+                    document.location.replace(window.location.protocol+"//"+DOMAIN+"/auth");
+                }
+            }
+            else if(e.type=="message_server"){
+                if (data.sender.user_id==undefined){
+                addMessage(data.sender.name,data.message,data.sender.user_id==my_id);
+
+                }
+                else{
+                    addMessage(data.sender.name+"("+data.sender.user_id+")",data.message,data.sender.user_id==my_id);
+                }
+            }
+            else if(e.type=="user_list"){
+                var members_list = document.getElementById('members_list');
+                members_list.innerHTML="";
+                for(var i=0;i<data.user_count;i++){
+                    var member=document.createElement('div');
+                    member.className="member";
+                    var memberName=document.createElement('span');
+                    memberName.className="member_name";
+                    memberName.innerHTML=data.users[i].name;
+                    member.insertAdjacentElement("beforeend",memberName);
+                    var memberId=document.createElement('span');
+                    memberId.className="member_id";
+                    memberId.innerHTML=data.users[i].user_id;
+                    member.insertAdjacentElement("beforeend",memberId);
+                    if(data.users[i].registered){
+                        member.style.fontWeight="bold";
+                    }
+                    members_list.insertAdjacentElement("beforeend",member);
+                }
+                document.getElementById('chat_onlineCount').innerHTML=data.user_count+" online";
+            }
+        };
+        
+        function addMessage(name,message,isMyMessage){
+            var chat_log = document.getElementById('chat_log');
+            var bubble=document.createElement('div');
+            bubble.className = "chat_message";
+            var bubble_sender=document.createElement('span');
+            bubble_sender.className="chat_message_sender";
+            bubble_sender.innerHTML=name;
+            bubble.insertAdjacentElement("beforeend",bubble_sender);
+            bubble.insertAdjacentHTML("beforeend","<br>");
+            var bubble_message=document.createElement('span');
+            bubble_message.className="chat_message_message";
+            bubble_message.innerText=message;
+            bubble.insertAdjacentElement("beforeend",bubble_message);
+            chat_log.insertAdjacentElement("beforeend",bubble);
+            if(isMyMessage){
+                document.getElementsByClassName("chat_message")[0].style.marginRight="10px";
+                document.getElementsByClassName("chat_message")[0].style.marginLeft="auto";
+            }
+            if(autoScroll){
+                chat_log.scrollBy(0, chat_log.scrollHeight);
+            }
+        }
+
+        function send(){
+            if(document.getElementById("message_input").value.length==0 || document.getElementById("message_input").value.length>1000){
+                return;
+            }
+            var data = {
+                "id":"ida",
+                "timestamp":new Date(),
+                "type":"message_client",
+                "data":{
+                    "recipients":document.getElementById("recipients_input").value,
+                    "message":document.getElementById("message_input").value
+                }
+            };
+            chat.send(JSON.stringify(data));
+            document.getElementById("message_input").value = "";
+            var chat_log = document.getElementById('chat_log');
+            chat_log.scrollBy(0, chat_log.scrollHeight);
+        }
+
+        document.getElementById("message_input").addEventListener("keypress", function(event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                send();
+            }
+        }); 
+
+        document.getElementById("message_input").onblur = function(){
+            window.setTimeout(function(){
+                document.getElementById("recipients_input").focus();
+            }, 10);
+        }
+
+        document.getElementById('chat_log').onscroll = function(){
+            if(this.scrollTop + this.clientHeight >= this.scrollHeight){
+                autoScroll = true;
+            }
+            else{
+                autoScroll = false;
+            }
+        }
+
+        showSidePanel=function(){
+            document.getElementById('side_panel').style.display="block";
+            document.getElementById('side_panel').style.width="360px";
+            document.getElementById('side_panel').style.opacity="1";
+            document.getElementById('side_panel').style.zIndex="1";
+            document.getElementById('side_panel').style.pointerEvents="auto";
+            document.getElementById('side_panel').style.transition="width 0.5s, opacity 0.5s, z-index 0.5s, pointer-events 0.5s";
+        }
+
+        hideSidePanel=function(){
+            document.getElementById('side_panel').style.width="0px";
+            document.getElementById('side_panel').style.opacity="0";
+            document.getElementById('side_panel').style.zIndex="-1";
+            document.getElementById('side_panel').style.pointerEvents="none";
+            document.getElementById('side_panel').style.transition="width 0.5s, opacity 0.5s, z-index 0.5s, pointer-events 0.5s";
+        }
+
+        leaveRoom=function(){document.location="/auth";}
+    </script>
+    </script>
+</html>

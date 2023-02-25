@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
+    <title>Home | Kotneko's timepass project</title>
+  </head>
+  <style>
+    body {
+      background-color: #000000;
+      color: #ffffff;
+    }
+    #header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 50px;
+        padding: 10px;
+        background-color: #5d00ff;
+        color: #ffffff;
+        text-align: center;
+        font-size: 30px;
+        font-family: "Times New Roman", Times, serif;
+        word-wrap: break-word;
+    }
+
+    #header_menu {
+        position: fixed;
+        right: 0;
+        left: 0;
+        top: 50px;
+        width: 100%;
+        padding: 10px;
+        background-color: #935eee;
+    }
+        #header_menu button {
+            background-color: #935eee;
+            color: #ffffff;
+            border: none;
+            font-size: 20px;
+            font-family: "Times New Roman", Times, serif;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+            #header_menu button:hover {
+                background-color: #ffffff;
+                color: #5d00ff;
+            }
+
+  </style>
+  <body>
+    <div id="header">
+        Kotneko's timepass project
+    </div>
+
+    <div id="header_menu">
+        <button id="header_menu_home">Home</button>
+        <button id="header_menu_chat">Chat</button>
+    </div>
+
+    <div id="content">
+        
+    </div>
+    <div id="footer">
+
+    </div>
+
+    <script>
+        document.getElementById("header_menu_chat").addEventListener("click", function() {
+            window.location.href = "/chat";
+        });
+    </script>
+  </body>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+    <head>
+        <title>Login | Kotneko's timepass project</title>
+        <style>
+            body{
+                background-color: #000000;
+            }
+            #login_header{
+                position: absolute;
+                top: 0;
+                bottom: 50px;
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+                color: #ffffff;
+                width: 100%;
+                height: auto;
+            }
+            #login_form{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background-color: #935eee;
+                text-align: center;
+                border-radius: 20px;
+            }
+
+            #login_form form{
+                margin: 20px;
+            }
+
+            #login_form input{
+                width: 30ch;
+                margin: 2ch;
+                font-size: large;
+                background: transparent;
+                border: 0;
+                outline: 0;
+                border-bottom: 1px solid#444444;
+            }
+
+            #login_form input[type="submit"]{
+                width: 90%;
+                margin: 5%;
+                font-size: larger;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                background-color: #229922;
+                color: white;
+                border: none;
+                outline: none;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            #login_footer{
+                position: fixed;
+                align-content: center;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="login_header"></div>
+        <div id="login_form">
+            <span style="font-size:x-large">Kotneko's timepass project</span>
+            <br>
+            <span style="font-size:large">Login</span>
+            <br>
+            <form method="post" action="/auth">
+                <div id="errMsg" style="color: red"></div>
+                <!--label for="username">Name:</label-->
+                <input type="text" id="name" name="name" placeholder="Username (Any name if not registered)">
+                <br>
+                <!--label for="password">Password:</label-->
+                <!--input type="password" id="secret" name="secret" placeholder="secret"-->
+                <br>
+                <!--label for="remember">Remember me</label>
+                <input type="checkbox" id="remember" name="rememberme" value="true"-->
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div id="login_footer">
+        </div>
+    </body>
+</html>
