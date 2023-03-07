@@ -410,10 +410,10 @@
             bubble_message.innerText=message;
             bubble.insertAdjacentElement("beforeend",bubble_message);
             chat_log.insertAdjacentElement("beforeend",bubble);
-            if(isMyMessage){
+            /*if(isMyMessage){
                 document.getElementsByClassName("chat_message")[0].style.marginRight="10px";
                 document.getElementsByClassName("chat_message")[0].style.marginLeft="auto";
-            }
+            }*/
             if(autoScroll){
                 chat_log.scrollBy(0, chat_log.scrollHeight);
             }
