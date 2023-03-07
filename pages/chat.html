@@ -115,7 +115,7 @@
                             overflow-y: auto;
                         }
                             .chat_message{
-                                position: relative;
+                                position: sticky;
                                 max-width: 80%;
                                 width:fit-content;
                                 margin: 10px;
@@ -367,8 +367,7 @@
             }
             else if(e.type=="message_server"){
                 if (data.sender.user_id==undefined){
-                addMessage(data.sender.name,data.message,data.sender.user_id==my_id);
-
+                    addMessage(data.sender.name,data.message,data.sender.user_id==my_id);
                 }
                 else{
                     addMessage(data.sender.name+"("+data.sender.user_id+")",data.message,data.sender.user_id==my_id);
